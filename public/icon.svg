@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Eastern Doctor icon">
+  <rect width="512" height="512" rx="96" fill="#143034"/>
+  <path d="M256 92c90.6 0 164 73.4 164 164s-73.4 164-164 164S92 346.6 92 256 165.4 92 256 92Z" fill="#f5f7f6"/>
+  <path d="M182 158h148v43H231v35h88v41h-88v36h102v43H182V158Z" fill="#176c70"/>
+</svg>
