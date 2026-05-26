@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+!.env.production.example
+.codex-secrets/
+.next/
+node_modules/
+prisma/dev.db
+*.log
+tsconfig.tsbuildinfo
