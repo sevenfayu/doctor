@@ -6,6 +6,7 @@ Last updated: May 26, 2026
 
 - GitHub repository pushed: `https://github.com/sevenfayu/doctor`
 - Vercel project created and linked: `sevenfayu/eastern-doctor`
+- Vercel GitHub auto deploy connected to `sevenfayu/doctor`.
 - Production deployment completed:
   - `https://eastern-doctor-6bvbmnxrj-sevenfayu.vercel.app`
 - Vercel project domains added:
@@ -48,14 +49,6 @@ Fallback Vercel URL:
 https://eastern-doctor-6bvbmnxrj-sevenfayu.vercel.app
 ```
 
-## GitHub Auto Deploy Pending
+## GitHub Auto Deploy
 
-Vercel Login Connection is no longer the blocker, but Vercel still cannot access `sevenfayu/doctor` through its GitHub App repository permissions.
-
-Latest CLI error:
-
-```text
-Failed to connect sevenfayu/doctor to project. Make sure there aren't any typos and that you have access to the repository if it's private.
-```
-
-Manual CLI deployments work and the current production deployment is live.
+Connected. Future pushes to `main` can trigger Vercel deployments automatically.
