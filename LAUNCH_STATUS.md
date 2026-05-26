@@ -11,6 +11,9 @@ Last updated: May 26, 2026
 - Vercel project domains added:
   - `easterndoctor.com`
   - `www.easterndoctor.com`
+- DNS and HTTPS are working:
+  - `https://easterndoctor.com`
+  - `https://www.easterndoctor.com`
 - Vercel production/development environment variables added:
   - `NEXT_PUBLIC_SITE_URL`
   - `NEXT_PUBLIC_WHATSAPP_NUMBER`
@@ -33,39 +36,26 @@ Last updated: May 26, 2026
 
 ## Current Live URL
 
-Use this URL until DNS finishes:
+Primary production URL:
+
+```text
+https://easterndoctor.com
+```
+
+Fallback Vercel URL:
 
 ```text
 https://eastern-doctor-6bvbmnxrj-sevenfayu.vercel.app
 ```
 
-## DNS Pending
-
-Current domain nameservers are:
-
-```text
-ns1.myhostadmin.net
-ns2.myhostadmin.net
-```
-
-Vercel expects either:
-
-```text
-A easterndoctor.com 76.76.21.21
-A www.easterndoctor.com 76.76.21.21
-```
-
-or change nameservers to:
-
-```text
-ns1.vercel-dns.com
-ns2.vercel-dns.com
-```
-
-Local DNS still did not resolve the A records at the last check, so the custom domain may need propagation time or another DNS save/verification in the domain provider panel.
-
 ## GitHub Auto Deploy Pending
 
-Vercel could not connect GitHub automatically because the Vercel account needs a GitHub Login Connection.
+Vercel Login Connection is no longer the blocker, but Vercel still cannot access `sevenfayu/doctor` through its GitHub App repository permissions.
+
+Latest CLI error:
+
+```text
+Failed to connect sevenfayu/doctor to project. Make sure there aren't any typos and that you have access to the repository if it's private.
+```
 
 Manual CLI deployments work and the current production deployment is live.
