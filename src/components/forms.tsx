@@ -21,6 +21,25 @@ function FormStatus({ msg }: { msg: string }) {
   return <p className="text-sm font-semibold text-[color:var(--site-muted)]">{msg}</p>;
 }
 
+function buildWhatsAppFallback(form: FormData) {
+  const number = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "85252642367").replace(/[^\d]/g, "");
+  const lines = [
+    "Hello, I would like to submit a medical case for treatment in China.",
+    "",
+    `Request type: ${form.get("serviceType") || ""}`,
+    `Name: ${form.get("name") || ""}`,
+    `Contact: ${form.get("contact") || ""}`,
+    `Country / region: ${form.get("countryRegion") || ""}`,
+    `Preferred city or hospital: ${form.get("targetHospital") || ""}`,
+    `Budget: ${form.get("budget") || ""}`,
+    `Urgency: ${form.get("urgency") || ""}`,
+    "",
+    `Medical need: ${form.get("message") || ""}`
+  ];
+
+  return `https://wa.me/${number}?text=${encodeURIComponent(lines.join("\n"))}`;
+}
+
 export function ConsultationLeadForm({ compact = false }: { compact?: boolean }) {
   const [msg, setMsg] = useState("");
 
@@ -30,8 +49,18 @@ export function ConsultationLeadForm({ compact = false }: { compact?: boolean })
       onSubmit={async (e) => {
         e.preventDefault();
         const f = new FormData(e.currentTarget);
-        const res = await submitJson("/api/consultation", Object.fromEntries(f.entries()));
-        setMsg(res.ok ? "Case received. Our consultant can follow up by WhatsApp or email." : "Submit failed. Please try WhatsApp.");
+        try {
+          const res = await submitJson("/api/consultation", Object.fromEntries(f.entries()));
+          if (res.ok) {
+            setMsg("Case received. Our consultant can follow up by WhatsApp or email.");
+            return;
+          }
+        } catch {
+          // Fall through to WhatsApp so the lead is still recoverable if the database is not connected yet.
+        }
+
+        setMsg("Opening WhatsApp so our consultant can receive your case.");
+        window.location.href = buildWhatsAppFallback(f);
       }}
     >
       <Field label="Request type">
